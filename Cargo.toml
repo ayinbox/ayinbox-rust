@@ -1,0 +1,38 @@
+[package]
+name = "ayinbox"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "Official Rust client for the AY Inbox REST API"
+license = "MIT"
+repository = "https://github.com/ayinbox/ayinbox-rust"
+homepage = "https://ayinbox.com"
+documentation = "https://docs.rs/ayinbox"
+readme = "README.md"
+keywords = ["ayinbox", "email", "api", "client", "sdk"]
+categories = ["api-bindings", "email"]
+exclude = [".github/", "tests/fixtures/"]
+
+[dependencies]
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+tokio = { version = "1", features = ["time"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+futures-util = { version = "0.3", default-features = false, features = ["std"] }
+hmac = "0.12"
+sha2 = "0.10"
+subtle = "2"
+hex = "0.4"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+wiremock = "0.6"
+
+[[example]]
+name = "list_campaigns"
+path = "examples/list_campaigns.rs"
+
+[[example]]
+name = "verify_webhook"
+path = "examples/verify_webhook.rs"
