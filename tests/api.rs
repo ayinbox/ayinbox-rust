@@ -87,7 +87,8 @@ async fn missing_key_is_a_config_error() {
 
 #[tokio::test]
 async fn maps_each_error_fixture() {
-    let cases: &[(u16, &str, &str, fn(&Error) -> bool)] = &[
+    type Case = (u16, &'static str, &'static str, fn(&Error) -> bool);
+    let cases: &[Case] = &[
         (400, "400_bad_request.json", "bad_request", |e| {
             matches!(e, Error::BadRequest(_)) && e.is_validation()
         }),
